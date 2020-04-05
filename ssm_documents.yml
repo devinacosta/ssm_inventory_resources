@@ -17,7 +17,7 @@ Resources:
                 runCommand:
                   - REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed -e "s/.$//g")
                   - INSTANCEID=$(/usr/bin/curl -s http://169.254.169.254/latest/meta-data/instance-id)
-                  - ITEMS=$(curl https://raw.githubusercontent.com/amimoto-ami/ssm_inventry_resources/master/packages.sh | bash)
+                  - ITEMS=$(curl https://raw.githubusercontent.com/devinacosta/ssm_inventry_resources/master/instancemeta.sh | bash)
                   - aws ssm put-inventory  --instance-id "${INSTANCEID}"  --items "$(echo ${ITEMS})"  --region "${REGION}"
                 workingDirectory: "/"
                 timeoutSeconds: "300"
